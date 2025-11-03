@@ -11,7 +11,7 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/yourusername/yourrepo.git'   // 🔹 Replace with your repo URL
+                git branch: 'main', url: 'https://github.com/aman8180/cicd.git'   // 🔹 Replace with your repo URL
             }
         }
 
