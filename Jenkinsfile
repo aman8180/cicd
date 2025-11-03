@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_CRED = 'dockerhub-creds'        // Jenkins credential ID for Docker Hub
-        GIT_CRED    = 'github-creds'           // Jenkins credential ID for GitHub PAT (already set)
+        GIT_CRED    = 'github-creds'           // Jenkins credential ID for GitHub PAT
         IMAGE_REPO  = 'amanparyani/cicd'       // Your Docker Hub repo
         IMAGE_TAG   = "${env.BUILD_NUMBER}"    // Build number as tag
         KUBECONFIG  = '/var/lib/jenkins/.kube/config'
@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/aman8180/cicd.git', credentialsId: "${github-creds}"
+                git branch: 'main', url: 'https://github.com/aman8180/cicd.git', credentialsId: "${GIT_CRED}"
             }
         }
 
