@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Simple styling for the blog content */
+        .blog-content h2 {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 600;
+            margin-top: 2rem; /* 32px */
+            margin-bottom: 1rem; /* 16px */
+            color: #111827; /* gray-900 */
+        }
+        .blog-content p {
+            font-size: 1.125rem; /* 18px */
+            line-height: 1.75; /* 28px */
+            color: #374151; /* gray-700 */
+            margin-bottom: 1.5rem; /* 24px */
+        }
+        .blog-content a {
+            color: #2563EB; /* blue-600 */
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Title -->
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold text-blue-600">DevOps Dispatch</span>
+                </div>
+                
+                <!-- Main Nav (Functional) -->
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="/blog" class="border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        Home
+                    </a>
+                    <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        Articles
+                    </a>
+                    <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        About
+                    </a>
+                </div>
+
+                <!-- User/Logout -->
+                <div class="flex items-center ml-6">
+                    <span class="text-sm text-gray-700 mr-4">
+                        Welcome, <span class="font-medium">{{ username }}</span>
+                    </span>
+                    <a href="/logout"
+                       class="bg-red-500 text-white px-4 py-2 rounded-md text-sm font-medium
+                              hover:bg-red-600 focus:outline-none focus:ring-2
+                              focus:ring-offset-2 focus:ring-red-500 transition duration-150">
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8 mt-8">
+        <article class="bg-white rounded-lg shadow-xl overflow-hidden">
+            <!-- Blog Post Header Image -->
+            <img src="https://placehold.co/1200x600/3182CE/FFFFFF?text=What+is+CI/CD?" 
+                 alt="CI/CD Pipelines" 
+                 class="w-full h-64 object-cover">
+            
+            <div class="p-6 sm:p-10 blog-content">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                    What is CI/CD? A Simple Guide for Beginners
+                </h1>
+                <p class="text-lg text-gray-600 mb-6">Published on <span class="font-medium">November 2, 2025</span></p>
+
+                <p>
+                    If you've spent any time in the software development world, you've almost certainly heard the term "CI/CD." 
+                    It stands for <strong>Continuous Integration</strong> and <strong>Continuous Delivery</strong> (or <strong>Continuous Deployment</strong>).
+                    These practices are the backbone of modern DevOps, designed to help development teams deliver code changes more frequently and reliably.
+                </p>
+
+                <h2>What is Continuous Integration (CI)?</h2>
+                <p>
+                    Continuous Integration is the practice of automating the integration of code changes from multiple contributors into a single software project. 
+                    Here's how it works:
+                </p>
+                <ol class="list-decimal list-inside space-y-2 mb-6 text-lg text-gray-700">
+                    <li>A developer commits code to a shared repository (like Git).</li>
+                    <li>A CI server (like Jenkins, GitLab CI, or GitHub Actions) automatically detects the change.</li>
+                    <li>The server builds the code and runs a suite of automated tests (unit tests, integration tests, etc.).</li>
+                    <li>If the build or tests fail, the team is notified immediately to fix the issue.</li>
+                </ol>
+                <p>
+                    The primary goal of CI is to prevent integration problems by finding and addressing bugs quicker, improving software quality, and reducing the time it takes to validate and release new updates.
+                </p>
+
+                <h2>What is Continuous Delivery (CD)?</h2>
+                <p>
+                    Continuous Delivery picks up where Continuous Integration leaves off. It's the practice of automatically deploying every code change that passes the CI stage to a testing or "staging" environment. 
+                    This ensures that you always have a deployable build that has passed all automated tests.
+                </p>
+                <p>
+                    The final step—deploying to the live production environment—is still a manual button-push. This gives the team control over *when* the new code goes live.
+                </p>
+
+                <h2>What about Continuous Deployment (the *other* CD)?</h2>
+                <p>
+                    Continuous Deployment goes one step further than Continuous Delivery. With this practice, every change that passes all stages of your automated pipeline is *automatically* deployed to production. There is no manual intervention.
+                </p>
+                <p>
+                    This approach is excellent for mature teams who have a high degree of confidence in their automated testing pipeline.
+                </p>
+
+                <h2>A Simple CI/CD Pipeline Example (YAML)</h2>
+                <p>
+                    Here is a very simple example of what a CI pipeline might look like in a `.gitlab-ci.yml` file:
+                </p>
+
+                <!-- Dark Code Block with Copy Button -->
+                <div class="relative bg-gray-900 rounded-lg my-6">
+                    <button id="copy-btn" 
+                            class="absolute top-3 right-3 bg-gray-700 text-gray-300
+                                   hover:bg-gray-600 px-3 py-1 rounded-md text-sm font-medium
+                                   transition-colors duration-150">
+                        Copy
+                    </button>
+                    
+                    <pre class="p-6 pt-12"><code id="code-block" class="language-yaml" style="font-family: 'Courier New', Courier, monospace;">
+<span class="text-gray-400"># This pipeline has two stages: build and test</span>
+<span class="text-cyan-400">stages:</span>
+  <span class="text-green-400">- build</span>
+  <span class="text-green-400">- test</span>
+
+<span class="text-cyan-400">build_job:</span>
+  <span class="text-cyan-400">stage:</span> <span class="text-green-400">build</span>
+  <span class="text-cyan-400">script:</span>
+    <span class="text-green-400">- echo "Building the application..."</span>
+    <span class="text-green-400">- npm install</span>
+    <span class="text-green-400">- npm run build</span>
+
+<span class="text-cyan-400">test_job:</span>
+  <span class="text-cyan-400">stage:</span> <span class="text-green-400">test</span>
+  <span class="text-cyan-400">script:</span>
+    <span class="text-green-400">- echo "Running tests..."</span>
+    <span class="text-green-400">- npm test</span>
+                    </code></pre>
+                </div>
+
+                <h2>Why Does CI/CD Matter?</h2>
+                <p>
+                    Ultimately, a CI/CD pipeline automates the steps in your software delivery process. This automation helps you:
+                </p>
+                <ul class="list-disc list-inside space-y-2 mb-6 text-lg text-gray-700">
+                    <li><strong>Release Faster:</strong> Automate builds and tests to get new features to users quickly.</li>
+                    <li><strong>Improve Quality:</strong> Catch bugs early in the development cycle before they become big problems.</li>
+                    <li><strong>Reduce Risk:</strong> Smaller, more frequent code changes are easier to troubleshoot than large, infrequent releases.</li>
+                    <li><strong>Boost Productivity:</strong> Developers can focus on writing code instead of worrying about manual deployment logistics.</li>
+                </ul>
+            </div>
+        </article>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white mt-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <p class="text-center text-gray-500 text-sm">
+                &copy; 2025 DevOps Dispatch. A demo for a Flask app.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Link to the external JS file -->
+    <script src="{{ url_for('static', filename='js/blog.js') }}"></script>
+
+</body>
+</html>
+

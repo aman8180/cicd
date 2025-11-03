@@ -1,0 +1,19 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  vars:
+    image_tag: "{{ lookup('env','IMAGE_TAG') }}"
+    image_repo: "amanparyani/cicd:{{ image_tag }}"
+  tasks:
+    - name: Template Kubernetes manifest with image
+      template:
+        src: ../k8s/deployment.yaml
+        dest: /tmp/deployment_rendered.yaml
+      vars:
+        IMAGE_TAG: "{{ image_tag }}"
+        IMAGE_REPO: "{{ image_repo }}"
+
+    - name: Apply Kubernetes manifest
+      command: kubectl apply -f /tmp/deployment_rendered.yaml
+      environment:
+        KUBECONFIG: "{{ lookup('env','KUBECONFIG') }}"
