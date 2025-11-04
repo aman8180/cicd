@@ -19,7 +19,7 @@ app.config["SECRET_KEY"] = "your_very_secret_key_change_this"
 
 # PostgreSQL Connection Details
 # !! Replace with your own database details !!
-DB_HOST = "localhost"
+DB_HOST = "172.31.25.211"
 DB_NAME = "blog_db"
 DB_USER = "postgres"
 DB_PASS = "aman8180"
